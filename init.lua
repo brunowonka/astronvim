@@ -10,7 +10,6 @@ function BrunoAutoCmd()
     }
   elseif fileTy == "gitcommit" then
     vim.opt.colorcolumn = { "51", "73" }
-    -- vim.api.nvim_set_option_value("colorcolumn", "16", {})
   end
 end
 
