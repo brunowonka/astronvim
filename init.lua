@@ -1,3 +1,19 @@
+function BrunoAutoCmd()
+  local wkl = require "which-key"
+  local fileTy = vim.api.nvim_buf_get_option(0, "filetype")
+
+  if fileTy == "gitrebase" then
+    wkl.register {
+      ["R"] = { "^dwireword<ESC>", "Reword" },
+      ["E"] = { "^dwiedit<ESC>", "Edit" },
+      ["B"] = { "Obreal<ESC>", "Break" },
+    }
+  elseif fileTy == "gitcommit" then
+    vim.opt.colorcolumn = { "51", "73" }
+    -- vim.api.nvim_set_option_value("colorcolumn", "16", {})
+  end
+end
+
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -69,12 +85,13 @@ return {
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
   polish = function()
+    vim.cmd "autocmd FileType * lua BrunoAutoCmd()"
     -- Set up custom filetypes
     -- vim.filetype.add {
     --   extension = {
     --     foo = "fooscript",
     --   },
-    --   filename = {
+    --   fileSame = {
     --     ["Foofile"] = "fooscript",
     --   },
     --   pattern = {
