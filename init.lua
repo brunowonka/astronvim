@@ -6,7 +6,7 @@ function BrunoAutoCmd()
     wkl.register {
       ["R"] = { "^dwireword<ESC>", "Reword" },
       ["E"] = { "^dwiedit<ESC>", "Edit" },
-      ["B"] = { "Obreal<ESC>", "Break" },
+      ["B"] = { "Obreak<ESC>", "Break" },
     }
   elseif fileTy == "gitcommit" then
     vim.opt.colorcolumn = { "51", "73" }
@@ -66,27 +66,25 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
-      "rust_analyzer"
+      "rust_analyzer",
     },
     config = {
       rust_analyzer = function(opts)
         return {
           on_attach = function(_, bufnr)
-            local rt = require('rust-tools')
-            local wk = require('which-key')
-            wk.register({
-              ["<C-space>"] = {rt.hover_actions.hover_actions, "Rust hover actions", buffer = bufnr},
-              ["<leader>a"] = {rt.code_action_group.code_action_group, "Rust code action group", buffer = bufnr},
-            })
+            local rt = require "rust-tools"
+            local wk = require "which-key"
+            wk.register {
+              ["<C-space>"] = { rt.hover_actions.hover_actions, "Rust hover actions", buffer = bufnr },
+              ["<leader>a"] = { rt.code_action_group.code_action_group, "Rust code action group", buffer = bufnr },
+            }
           end,
         }
       end,
     },
     setup_handlers = {
       -- add custom handle
-      rust_analyzer = function(_, opts)
-        require("rust-tools").setup { server = opts }
-      end
+      rust_analyzer = function(_, opts) require("rust-tools").setup { server = opts } end,
     },
   },
 
