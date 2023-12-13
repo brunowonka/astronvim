@@ -4,8 +4,8 @@ function BrunoAutoCmd()
 
   if fileTy == "gitrebase" then
     wkl.register {
-      ["R"] = { "^dwireword<ESC>", "Reword" },
-      ["E"] = { "^dwiedit<ESC>", "Edit" },
+      ["R"] = { "^dwireword <ESC>", "Reword" },
+      ["E"] = { "^dwiedit <ESC>", "Edit" },
       ["B"] = { "Obreak<ESC>", "Break" },
     }
   elseif fileTy == "gitcommit" then
